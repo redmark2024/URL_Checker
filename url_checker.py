@@ -41,7 +41,11 @@ st.write("Enter a URL below to check if it's safe or potentially a phishing URL:
 
 url_input = st.text_input("Enter URL", "")
 
-if url_input:
-    result = is_phishing_url(url_input)
-    st.write(f"Result for URL: **{url_input}**")
-    st.write(result)
+# Add a button that checks the URL
+if st.button("Check URL"):
+    if url_input:
+        result = is_phishing_url(url_input)
+        st.write(f"Result for URL: **{url_input}**")
+        st.write(result)
+    else:
+        st.write("Please enter a URL to check.")
