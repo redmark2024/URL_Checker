@@ -1,3 +1,4 @@
+import streamlit as st
 from urllib.parse import urlparse
 
 def check_https(url):
@@ -34,16 +35,13 @@ def is_phishing_url(url):
         return "Warning: URL too complex."
     return "This URL appears safe."
 
-if __name__ == "__main__":
-    test_urls = [
-        "https://www.paypal.com/login",
-        "http://secure-paypal-support.com",
-        "https://www.amaz0n.com",
-        "https://account-update.paypal.com",
-        "https://www.paypal.com/verify-account?user=12345"
-    ]
-    
-    for url in test_urls:
-        print(f"Checking URL: {url}")
-        print(is_phishing_url(url))
-        print("-" * 50)
+# Streamlit App Layout
+st.title("Phishing URL Checker")
+st.write("Enter a URL below to check if it's safe or potentially a phishing URL:")
+
+url_input = st.text_input("Enter URL", "")
+
+if url_input:
+    result = is_phishing_url(url_input)
+    st.write(f"Result for URL: **{url_input}**")
+    st.write(result)
